@@ -113,19 +113,20 @@ False Negatives in Eigenfaces
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.vr6iqta218m.png)
 
 - TN: True Negative  预测正确且预测类型为Negative 
-- FP:  False Positive  预测错误且预测类型为Positive  
-- FN:  False Negative  预测错误且预测类型为Negative
 - TP:  True Positive  预测正确且预测类型为Positive
+- FP:  False Positive  预测错误且预测类型为Positive  → 误报 (Type I error).
+- FN:  False Negative  预测错误且预测类型为Negative → 漏报 (Type II error).
 
 **Model Performance**
 
-- 准确率：
+- **ACcuracy 准确率**：
 
 $$
 \text { Accuracy }=\frac{T P+T N}{T P+T N+F P+F N}
 $$
 
-- 精确度：
+- **Precision 精确度**：
+True Positive / (True Positive + False Positive). 在所有标为阳性的项目中，有多少真正属于阳性类别。
 
 $$
 \text { Precision }=\frac{T P}{T P+F P}
@@ -134,7 +135,11 @@ $$
 精度是指在所有预测为正例的分类中，预测正确的程度为正例的效果。
 **精度越高越好**。
 
-- 召回率：
+>**准确率与精确率的区别**：
+在正负样本不平衡的情况下，**准确率**这个评价指标有很大的缺陷。比如在互联网广告里面，点击的数量是很少的，一般只有千分之几，如果用acc，即使全部预测成负类（不点击）acc 也有 99% 以上，没有意义。
+
+- **Recall 召回率**：
+True Positive / (True Positive + False Negative). 在所有TP的项目中，有多少被正确归类为阳性的。或者简单地说，从数据集中“召回”了多少阳性的项目。
 
 $$
 \text { Recall }=\frac{T P}{T P+F N}
@@ -145,11 +150,18 @@ $$
 
 - F1值：
 
+
 $$
 F_{1}=\left(\frac{2}{\operatorname{recall}^{-1}+\text { precision }^{-1}}\right)=2 \cdot \frac{\text { precision } \cdot \text { recall }}{\text { precision }+\text { recall }}
 $$
 
+$$
+F_{1}=\frac{2 T P}{2 T P+F P+F N}
+$$
+
 通常实用的做法是将精度和召回率合成一个指标F-1值更好用，特别是当你需要一种简单的方法来衡量两个分类器性能时。F-1值是精度和召回率的调和平均值。
+
+> 只有当精确率和召回率都很高时，F1值才会高。
 
 - F2值：
 
@@ -157,20 +169,12 @@ $$
 \text { F2 }=\frac{(1+2+2) * Precision * Recall}{4 * Precision + Recall}
 $$
 
-**假正例（I型错误）**——原假设正确而拒绝原假设
 
-**假负例（II型错误）**——原假设错误而接受原假设
-
-
-
-**Recall**: True Positive / (True Positive + False Negative). 在所有TP的项目中，有多少被正确归类为阳性的。或者简单地说，从数据集中“召回”了多少阳性的项目。
-
-**Precision**: True Positive / (True Positive + False Positive). 在所有标为阳性的项目中，有多少真正属于阳性类别。
 
 
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/1565620081932.0b76lsr2ddar.png)
 
-# MIni-project
+# Mini-project
 
 *evaluation/evaluate_poi_identifier.py*
 
